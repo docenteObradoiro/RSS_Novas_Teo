@@ -18,3 +18,7 @@ A simple app to read RSS.
     implementation 'com.squareup.okhttp:okhttp:2.7.5'
     implementation 'com.squareup.okhttp:okhttp-urlconnection:2.7.5'
     ```
+    
+## Images
+
+![FeedReader](https://github.com/iramarJunior/FeedReader_android/blob/master/images/gif_feedreader.gif)
