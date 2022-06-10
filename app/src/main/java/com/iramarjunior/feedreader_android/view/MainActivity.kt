@@ -14,22 +14,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Callback {
 
-    lateinit var listView: RecyclerView
-    lateinit var adapter: RecyclerView.Adapter<ItemAdapter.ItemViewHolder>
-    val listItens = arrayListOf<Item>()
+    lateinit var listView: RecyclerView //lateinit permite inicializar una propiedad no anulable por fuera del constructor
+    lateinit var adapter: RecyclerView.Adapter<ItemAdapter.ItemViewHolder> //lateinit te ayuda cuando deseas asignar el valor de una propiedad después y no deseas usar comprobaciones de nulos (expresiones if, operador de acceso seguro o aserciones)
+    val listItems = arrayListOf<Item>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this) //El layoutManager está asociado al RecyclerView. Es el que organiza las vistas dentro del RecyclerView.
         listView = list_feed
         listView.layoutManager = layoutManager
 
-        adapter = ItemAdapter(listItens, this)
+        adapter = ItemAdapter(listItems, this) //Decirle al listView lo que debe contener. En este caso listItems que es un array con Item.
         listView.adapter = adapter
 
-        PkRSS.with(this).load("https://rss.tecmundo.com.br/feed").callback(this).async()
+        PkRSS.with(this).load("https://www.teo.gal/rss/novas").callback(this).async()
     }
 
     override fun onLoadFailed() {
@@ -40,11 +42,12 @@ class MainActivity : AppCompatActivity(), Callback {
 
     override fun onLoaded(newArticles: MutableList<Article>?) {
 
-        listItens.clear()
+        listItems.clear()
 
-        newArticles?.mapTo(listItens) {
+        newArticles?.mapTo(listItems) {
 
-            Item(it.title, it.author, it.date, it.source, it.enclosure.url)
+            Item(it.title, it.source, it.date)
+
         }
 
         adapter.notifyDataSetChanged()

@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.iramarjunior.feedreader_android.R
-import com.iramarjunior.feedreader_android.api.DownloadImageTask
 import com.iramarjunior.feedreader_android.model.Item
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,9 +21,7 @@ class ItemAdapter(val list: ArrayList<Item>, val context: Context) :
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val title = view.findViewById(R.id.text_title_card) as TextView
-        val author = view.findViewById(R.id.text_author_card) as TextView
         val date = view.findViewById(R.id.text_date_publication_card) as TextView
-        val image = view.findViewById(R.id.image_card) as ImageView
         val seeMore = view.findViewById(R.id.button_see_more) as Button
     }
 
@@ -40,15 +37,15 @@ class ItemAdapter(val list: ArrayList<Item>, val context: Context) :
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
         holder?.title?.text = list[position].title
-        holder?.author?.text = list[position].author
+        //holder?.author?.text = list[position].author
         holder?.date?.text =
-            SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR")).format(Date(list[position].date))
+            SimpleDateFormat("dd/MM/yyyy", Locale("gl", "SP")).format(Date(list[position].pubDate))
         holder?.seeMore?.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, list[position].link)
             context.startActivity(intent)
         }
 
-        DownloadImageTask(holder?.image!!).execute(list[position].image)
+        //DownloadImageTask(holder?.image!!).execute(list[position].image)
     }
 
     override fun getItemCount(): Int = list.size

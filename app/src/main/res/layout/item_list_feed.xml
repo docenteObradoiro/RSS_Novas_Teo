@@ -10,13 +10,6 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <ImageView
-            android:id="@+id/image_card"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:adjustViewBounds="false"
-            android:scaleType="centerCrop" />
-
         <TextView
             android:id="@+id/text_title_card"
             android:layout_width="match_parent"
@@ -24,6 +17,7 @@
             android:layout_marginTop="16dp"
             android:text="Title"
             android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
@@ -39,14 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-
-                <TextView
-                    android:id="@+id/text_author_card"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
                     android:id="@+id/text_date_publication_card"
